@@ -45,5 +45,13 @@
     "normalize.css": "^8.0.1",
     "popper.js": "^1.16.1"
   },
-  "description": ""
+  "description": "",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Karter13/ProjectSA.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Karter13/ProjectSA/issues"
+  },
+  "homepage": "https://github.com/Karter13/ProjectSA#readme"
 }
