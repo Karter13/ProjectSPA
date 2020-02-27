@@ -25,8 +25,7 @@ class App {
       .then((res) => res.json())
       .then((data) => {
         this.cars = data;
-        this.pageRender.getAllCars(data);
-
+        this.pageRender.renderAllElements(data);
         this.initRouter();
         this.router.render(decodeURI(location.pathname));
       });
@@ -34,6 +33,8 @@ class App {
 
   initRouter() {
     this.router.addRouter('', this.pageRender.renderHomePage.bind(this.pageRender, this.cars));
+    this.router.addRouter('cars', this.pageRender.renderSinglCarPage.bind(this.pageRender, this.cars));
+    this.router.addRouter('404', this.pageRender.renderErrorPage);
   }
 
 }
