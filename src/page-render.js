@@ -79,7 +79,7 @@ export class PageRender {
           document.querySelector(CONFIG.selectors.engine).innerHTML = `Двигатель ${elem.specifications.engine}`;
           document.querySelector(CONFIG.selectors.start).innerText = `Разгон до 100км/ч ${elem.specifications.start} c.`;
           document.querySelector(CONFIG.selectors.drive).innerText = `Привод ${elem.specifications.drive}`;
-          document.querySelector(CONFIG.selectors.price).innerText = `Цена ${elem.price} $`;
+          document.querySelector(CONFIG.selectors.price).innerText = `Цена от ${elem.price} $`;
           document.querySelector(CONFIG.selectors.warranty).innerText = `Гарантия ${elem.specifications.warranty} года`;
           document.querySelector(CONFIG.selectors.cardTitleDescription).innerText = elem.titleDescription;
           document.querySelector(CONFIG.selectors.cardTextDescription).innerText = elem.description;
@@ -113,16 +113,41 @@ export class PageRender {
     errorPage.style.display = CONFIG.block;
   }
 
+  initAboutPage() {
+    const buttonActivAboutPage = document.querySelector(CONFIG.selectors.btnActivAboutPage);
+    buttonActivAboutPage.addEventListener('click', (event) => {
+      event.preventDefault();
+      window.history.pushState(null, null, '/about/');
+      this.router.render(decodeURI(location.pathname));
+    });
+  }
+
+  renderAboutPage() {
+    const aboutPage = document.querySelector(CONFIG.selectors.aboutPage);
+    aboutPage.style.display = CONFIG.block;
+    this.initButtonAbout();
+  }
+  initButtonAbout() {
+    const btnAbout = document.querySelector(CONFIG.selectors.btnAboutPage);
+    console.log(btnAbout);
+    btnAbout.addEventListener('click', (event) => {
+      event.preventDefault();
+      window.history.pushState(null, null, '/');
+      this.router.render(decodeURI(location.pathname));
+    });
+  }
+
 
 
   renderAllElements(data) {
     this.getAllCars(data);
     this.initSingleCarPage();
+    this.initAboutPage();
   }
 
 }
 
-// const pageRender = new PageRender();
+const pageRender = new PageRender();
 // pageRender.renderHomePage();
 // pageRender.getAllCars();
-// pageRender.getAllCars();
+pageRender.initButtonAbout();

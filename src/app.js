@@ -35,6 +35,7 @@ class App {
     this.router.addRouter('', this.pageRender.renderHomePage.bind(this.pageRender, this.cars));
     this.router.addRouter('cars', this.pageRender.renderSinglCarPage.bind(this.pageRender, this.cars));
     this.router.addRouter('404', this.pageRender.renderErrorPage);
+    this.router.addRouter('about', this.pageRender.renderAboutPage.bind(this.pageRender));
   }
 
 }

@@ -7,7 +7,7 @@ export const CONFIG = {
     cars: '.cars',
     btnDark: 'btn-outline-dark',
     singleCar: '.single-car',
-    singlePageContent: '.one-card',
+    singlePageContent: '.single-card',
     cardTitleMain: '.card-title_main',
     cardTitleDescription: '.card-title_description',
     cardTextDescription: '.card-text_description',
@@ -21,6 +21,10 @@ export const CONFIG = {
     warranty: '.warranty',
     btnMain: 'btn-main',
     errorPage: '.error',
+    btnActivAboutPage: '.navbar-brand',
+    btnAboutPage: '.btn-about',
+    aboutPage: '.about',
+
 
   },
   none: 'none',
