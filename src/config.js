@@ -24,8 +24,10 @@ export const CONFIG = {
     btnActivAboutPage: '.navbar-brand',
     btnAboutPage: '.btn-about',
     aboutPage: '.about',
-
-
+    btnSearch: '.btn-outline-secondary',
+    searchInput: '.form-control',
+    searchPage: '.search',
+    searchCard: '.saerch-card',
   },
   none: 'none',
   block: 'block',

@@ -127,6 +127,7 @@ export class PageRender {
     aboutPage.style.display = CONFIG.block;
     this.initButtonAbout();
   }
+
   initButtonAbout() {
     const btnAbout = document.querySelector(CONFIG.selectors.btnAboutPage);
     console.log(btnAbout);
@@ -137,17 +138,69 @@ export class PageRender {
     });
   }
 
+  renderSearchPage(cars) {
+    const searcInput = document.querySelector(CONFIG.selectors.searchInput);
+    const searchPage = document.querySelector(CONFIG.selectors.searchPage);
+    const searchCard = document.querySelector(CONFIG.selectors.searchCard);
+    searchCard.innerHTML = '';
+    let isFind = false;
+    const carsSearch = cars.filter((item) => item.model.toLowerCase().includes(searcInput.value));
+    if (carsSearch.length) {
+      isFind = true;
+      carsSearch.forEach((elem) => {
+        const div = document.createElement('div');
+        const template = `<div class="col mb-3 shadow-lg p-3 single-card" " data-index="${elem.id}">
+        <div class="card text-center h-100 bg-secondary">
+          <img src="/${elem.image.small}" class="card-img-top" alt="car">
+          <div class="card-body one-card">
+            <h5 class="card-title">${elem.model}</h5>
+            <button class="btn btn-outline-dark " type="submit">
+            стоимость от ${elem.price} $
+            </button>
+          </div>
+        </div>
+      </div>`;
+        div.innerHTML = template;
+        searchCard.append(div);
+      });
+    }
+    searcInput.value = '';
+    if (isFind) {
+      searchPage.style.display = CONFIG.block;
+      this.initCarsLocation();
+    } else {
+      this.render404();
+    }
+  }
+
+  initSearchPage() {
+    const btnSearch = document.querySelector(CONFIG.selectors.btnSearch);
+    const searcInput = document.querySelector(CONFIG.selectors.searchInput);
+    btnSearch.addEventListener('click', (event) => {
+      event.preventDefault();
+      if (searcInput.value === '') {
+        history.pushState(null, null, '/');
+        this.router.render(decodeURI(location.pathname));
+      } else {
+        history.pushState(null, null, '/search/');
+        this.router.render(decodeURI(location.pathname));
+      }
+    });
+  }
+
+
 
 
   renderAllElements(data) {
     this.getAllCars(data);
     this.initSingleCarPage();
     this.initAboutPage();
+    this.initSearchPage()
   }
 
 }
 
-const pageRender = new PageRender();
+// const pageRender = new PageRender();
 // pageRender.renderHomePage();
 // pageRender.getAllCars();
-pageRender.initButtonAbout();
+// pageRender.initButtonAbout();
