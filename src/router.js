@@ -9,6 +9,7 @@ export class RouterHistory {
     };
 
     this.mainContentPages = document.querySelectorAll(CONFIG.selectors.mainContentPages);
+    console.log(this.mainContentPages);
     window.addEventListener('popstate', () => {
       this.render(decodeURI(window.location.pathname));
     });

@@ -130,7 +130,6 @@ export class PageRender {
 
   initButtonAbout() {
     const btnAbout = document.querySelector(CONFIG.selectors.btnAboutPage);
-    console.log(btnAbout);
     btnAbout.addEventListener('click', (event) => {
       event.preventDefault();
       window.history.pushState(null, null, '/');
@@ -188,14 +187,54 @@ export class PageRender {
     });
   }
 
+  initFormPage() {
+    const btnForm = document.querySelector(CONFIG.selectors.btnInitForm);
+    btnForm.addEventListener('click', (event) => {
+      event.preventDefault();
+      history.pushState(null, null, '/form/');
+      this.router.render(decodeURI(location.pathname));
+    });
+  }
 
+  renderFormPage() {
+    const formPage = document.querySelector(CONFIG.selectors.formPage);
+    const formPageContent = document.querySelector(CONFIG.selectors.formPageContent);
+    formPageContent.innerHTML = '';
+    const div = document.createElement('div');
+    const template = `<legend class="form-legend">Форма обратной связи</legend>
+                    <div class="form-group">
+                        <label for="name">Ваше имя</label>
+                        <input type="text" class="form-control" id="name" name="name" placeholder="Введите Ваше имя"
+                            value="">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Ваш e-mail</label>
+                        <input type="email" class="form-control" id="email" name="email" placeholder="Введите Ваш email"
+                            value="">
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Ваш телефон</label>
+                        <input type="phone" class="form-control" id="phone" name="phone" value="">
+                    </div>
+                    <div class="form-group">
+                        <label for="textarea">Текст сообщения</label>
+                        <textarea class="form-control" id="textarea" name="textarea" rows="3"
+                            placeholder="Пожалуйста, укажите дополнительную информацию к вашему запросу." value="">
+                                </textarea>
+                    </div>
+                    <button type="submit" class="btn btn-outline-dark form-btn">Отправить</button>`;
+    div.innerHTML = template;
+    formPageContent.append(div);
+    formPage.style.display = CONFIG.block;
+  }
 
 
   renderAllElements(data) {
     this.getAllCars(data);
     this.initSingleCarPage();
     this.initAboutPage();
-    this.initSearchPage()
+    this.initSearchPage();
+    this.initFormPage();
   }
 
 }
