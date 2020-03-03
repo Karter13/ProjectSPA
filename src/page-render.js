@@ -196,6 +196,16 @@ export class PageRender {
     });
   }
 
+  initBtnFormReturn() {
+    const btnFormReturn = document.querySelector(CONFIG.selectors.btnFormRet);
+    btnFormReturn.addEventListener('click', (event) => {
+      console.log(btnFormReturn);
+      event.preventDefault();
+      history.pushState(null, null, '/');
+      this.router.render(decodeURI(location.pathname));
+    });
+  }
+
   renderFormPage() {
     const formPage = document.querySelector(CONFIG.selectors.formPage);
     const formPageContent = document.querySelector(CONFIG.selectors.formPageContent);
@@ -222,7 +232,8 @@ export class PageRender {
                             placeholder="Пожалуйста, укажите дополнительную информацию к вашему запросу." value="">
                                 </textarea>
                     </div>
-                    <button type="submit" class="btn btn-outline-dark form-btn">Отправить</button>`;
+                    <button type="submit" class="btn btn-outline-dark form-btn">Отправить</button>
+                    `;
     div.innerHTML = template;
     formPageContent.append(div);
     formPage.style.display = CONFIG.block;
@@ -235,6 +246,8 @@ export class PageRender {
     this.initAboutPage();
     this.initSearchPage();
     this.initFormPage();
+    this.initBtnFormReturn()
+
   }
 
 }

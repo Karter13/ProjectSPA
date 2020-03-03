@@ -8,7 +8,7 @@ const webpack = require('webpack');
 
 module.exports = {
   mode: 'development',
-  entry: ['@babel/polyfill', './src/app.js', './src/validat.js'],
+  entry: ['@babel/polyfill', './src/app.js'],
   output: {
     filename: 'bundle.[contenthash].js',
     path: path.resolve(__dirname, 'dist'),

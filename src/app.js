@@ -6,11 +6,13 @@ import './styles/style.sass';
 import { CONFIG } from './config';
 import { RouterHistory } from './router';
 import { PageRender } from './page-render';
+import { FormService } from './form-submission';
 // import png from '../images/fon.png';
 
 class App {
   constructor() {
     this.cars = [];
+    this.formServise = new FormService(this.router);
     this.router = new RouterHistory();
     this.pageRender = new PageRender(this.router);
     this.init();
