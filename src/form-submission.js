@@ -38,6 +38,7 @@ export class FormService {
       submitHandler: () => {
         this.sendData();
         this.clearForm();
+        this.showMessage();
       },
       invalidHandler: () => {
         console.log('invalid');
@@ -60,13 +61,13 @@ export class FormService {
           required: "Вы не ввели имя!!!",
           minlength: $.validator.format("Необходимо не менее {0} символов!")
         },
-        phone: {
-          required: "Вы не ввели телефон!!!",
-        },
         email: {
           required: "Вы не ввели email!!!",
           email: "Введите правильный email!!!",
-        }
+        },
+        phone: {
+          required: "Вы не ввели телефон!!!",
+        },
       },
       errorClass: 'alert alert-danger',
       errorElement: 'div',
@@ -89,7 +90,13 @@ export class FormService {
     $(CONFIG.selectors.customersTextarea).val('');
   }
 
-}
+  showMessage() {
+    const showMessage = document.querySelector(CONFIG.selectors.sendingMessage);
+    showMessage.style.display = CONFIG.block;
 
-// const form = new FormService();
-// form.validatorForm();
+    setTimeout(() => {
+      showMessage.style.display = CONFIG.none;
+    }, 5000);
+  }
+
+}

@@ -229,5 +229,12 @@
         "large": "images/cardsCar/A-Q8.jpg"
       }
     }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "login": "Maikl@mail.ru",
+      "psw": 123123
+    }
   ]
 }

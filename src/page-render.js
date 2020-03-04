@@ -143,7 +143,7 @@ export class PageRender {
     const searchCard = document.querySelector(CONFIG.selectors.searchCard);
     searchCard.innerHTML = '';
     let isFind = false;
-    const carsSearch = cars.filter((item) => item.model.toLowerCase().includes(searcInput.value));
+    const carsSearch = cars.filter((item) => item.model.toLowerCase().includes(searcInput.value.toLowerCase()));
     if (carsSearch.length) {
       isFind = true;
       carsSearch.forEach((elem) => {
@@ -199,7 +199,6 @@ export class PageRender {
   initBtnFormReturn() {
     const btnFormReturn = document.querySelector(CONFIG.selectors.btnFormRet);
     btnFormReturn.addEventListener('click', (event) => {
-      console.log(btnFormReturn);
       event.preventDefault();
       history.pushState(null, null, '/');
       this.router.render(decodeURI(location.pathname));
@@ -233,7 +232,8 @@ export class PageRender {
                                 </textarea>
                     </div>
                     <button type="submit" class="btn btn-outline-dark form-btn">Отправить</button>
-                    `;
+                    <div class="valid-good shadow p-2">Данные улетели!
+                  </div>`;
     div.innerHTML = template;
     formPageContent.append(div);
     formPage.style.display = CONFIG.block;
@@ -251,8 +251,3 @@ export class PageRender {
   }
 
 }
-
-// const pageRender = new PageRender();
-// pageRender.renderHomePage();
-// pageRender.getAllCars();
-// pageRender.initButtonAbout();

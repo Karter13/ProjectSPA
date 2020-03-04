@@ -39,6 +39,7 @@ export const CONFIG = {
     emailError: '#email-error',
     phoneError: '#phone-error',
     btnFormRet: '.return-btn',
+    sendingMessage: '.valid-good',
   },
   none: 'none',
   block: 'block',
