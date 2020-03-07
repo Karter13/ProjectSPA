@@ -16,7 +16,7 @@
                 <img src="..\..\images\logoAudi.png" class="card-img-top card-logo" alt="...">
                 <form class="form-inline">
                     <input class="form-control mr-sm-2" type="search" placeholder="Введите модель" aria-label="Search">
-                    <button class="btn btn-outline-secondary my-2 my-sm-0 btn-basket" type="submit">Поиск</button>
+                    <button class="btn btn-outline-secondary my-2 my-sm-0 " type="submit">ПОИСК</button>
                 </form>
             </nav>
         </div>
@@ -25,7 +25,7 @@
                 <div class="tagline">
                     ВЫБЕРИ СВОЙ <span class="tagline-new">НОВЫЙ</span> АВТОМОБИЛЬ!
                 </div>
-                <button class="btn btn-outline-secondary my-2 my-sm-0 " type="submit">КОРЗИНА</button>
+                <button class="btn btn-outline-secondary my-2 my-sm-0 btn-gobasket" type="submit">КОРЗИНА</button>
             </nav>
         </div>
     </header>
@@ -69,7 +69,9 @@
                                 <button class="btn btn-outline-dark btn-main" type="submit">На главную</button>
                                 <button class="btn btn-outline-dark btn-form" type="submit" btn-consalt>Получить
                                     консультацию</button>
-                                <button class="btn btn-outline-dark " type="submit">В корзину</button>
+                                <button class="btn btn-outline-dark btn-addbasket" type="submit">В корзину</button>                                
+                            </div>
+                            <div class="good-basket shadow p-2">Товар в корзине!
                             </div>
                         </div>
                     </div>
@@ -116,11 +118,35 @@
             </div>
         </div>
 
+        <div class="basket page">
+            <div class="container">
+                <nav class="navbar navbar-light bg-transparent">
+                    <div class="tagline">
+                        <span class="tagline-new">КОРЗИНА</span>
+                    </div>
+                    <button class="btn btn-outline-dark my-2 my-sm-0 btn-gooutbasket" type="submit">На
+                        главную</button>
+                </nav>
+                <div class="basket-card row row-cols-1 row-cols-md-3">
+                </div>
+            </div>
+        </div>
+
         <div class="error page">
             <div class="container">
                 <div class="card text-center">
                     <div class="card-alert shadow-lg alert-info p-3 bg-secondary text-dark" role="alert">
                         Такой модели на данный момент нет в наличии!!!
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="errorbasket page">
+            <div class="container">
+                <div class="card text-center">
+                    <div class="card-alert shadow-lg alert-info p-3 bg-secondary text-dark" role="alert">
+                        Корзина пуста!!!
                     </div>
                 </div>
             </div>

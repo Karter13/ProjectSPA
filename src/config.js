@@ -1,5 +1,6 @@
 export const CONFIG = {
   api: 'http://localhost:3006',
+  idGoods: 'idGoods',
   selectors: {
     mainContentPages: '.main .page',
     homePage: '.all-cars',
@@ -40,6 +41,16 @@ export const CONFIG = {
     phoneError: '#phone-error',
     btnFormRet: '.return-btn',
     sendingMessage: '.valid-good',
+    btnAddBasket: '.btn-addbasket',
+    btnGoBasket: '.btn-gobasket',
+    basketPage: '.basket',
+    basketCard: '.basket-card',
+    basketCardSingle: '.basket-card_single',
+    btnDelete: 'btn-delete',
+    btnGoOutBasket: 'btn-gooutbasket',
+    navbarCars: '.navbar-cars',
+    basketPageEmpty: '.errorbasket',
+    goodInBasket: '.good-basket',
   },
   none: 'none',
   block: 'block',

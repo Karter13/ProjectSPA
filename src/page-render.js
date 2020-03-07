@@ -1,8 +1,10 @@
 import { CONFIG } from "./config";
+import { IdGoodsInBasket } from "./basket-data";
 
 export class PageRender {
   constructor(router) {
     this.router = router;
+    this.IdGoodsInBasket = new IdGoodsInBasket();
   }
 
   renderHomePage(cars) {
@@ -126,6 +128,7 @@ export class PageRender {
     const aboutPage = document.querySelector(CONFIG.selectors.aboutPage);
     aboutPage.style.display = CONFIG.block;
     this.initButtonAbout();
+    this.showBtnGoBasket();
   }
 
   initButtonAbout() {
@@ -184,6 +187,7 @@ export class PageRender {
         history.pushState(null, null, '/search/');
         this.router.render(decodeURI(location.pathname));
       }
+      this.showBtnGoBasket();
     });
   }
 
@@ -239,6 +243,86 @@ export class PageRender {
     formPage.style.display = CONFIG.block;
   }
 
+  initBtnBasket() {
+    const btnGoBasket = document.querySelector(CONFIG.selectors.btnGoBasket);
+    btnGoBasket.addEventListener('click', (event) => {
+      event.preventDefault();
+      history.pushState(null, null, '/basket/');
+      this.router.render(decodeURI(location.pathname));
+      btnGoBasket.style.display = CONFIG.none;
+    });
+  }
+
+  renderBasketPage(cars) {
+    const allIdBasket = this.getIdBasket();
+    const basketPage = document.querySelector(CONFIG.selectors.basketPage);
+    const basketCard = document.querySelector(CONFIG.selectors.basketCard);
+    basketCard.innerHTML = '';
+    const carsInBasket = cars.filter((elem) => allIdBasket.findIndex(i => i.id == elem.id) !== -1);
+    let isFind = false;
+    if (carsInBasket.length) {
+      isFind = true;
+      carsInBasket.forEach((elem) => {
+        const div = document.createElement('div');
+        const template = `<div class="col mb-3 shadow-lg p-3 single-card basket-card_single" data-index="${elem.id}">
+        <div class="card text-center h-100 bg-secondary">
+          <img src="/${elem.image.small}" class="card-img-top" alt="car">
+          <div class="card-body one-card">
+            <h5 class="card-title">${elem.model}</h5>
+            <h5 class="card-title">от ${elem.price} $</h5>
+            <button class="btn btn-outline-dark btn-delete" type="submit">
+            удалить из корзины
+            </button>            
+          </div>
+        </div>
+      </div>`;
+        div.innerHTML = template;
+        basketCard.append(div);
+      })
+      if (isFind) {
+        basketPage.style.display = CONFIG.block;
+      }
+    } else {
+      this.renderBasketEmpty();
+      console.log('error');
+    }
+    this.IdGoodsInBasket.initBtnDeleteGood();
+  }
+
+  getIdBasket() {
+    return JSON.parse(localStorage.getItem(CONFIG.idGoods));
+  }
+
+  renderBasketEmpty() {
+    window.history.pushState(null, null, '/empty');
+    this.router.render(decodeURI(location.pathname));
+  }
+
+  renderBasketPageEmpty() {
+    const errorBasketEmpty = document.querySelector(CONFIG.selectors.basketPageEmpty);
+    errorBasketEmpty.style.display = CONFIG.block;
+  }
+
+  showBtnGoBasket() {
+    const btnGoBasket = document.querySelector(CONFIG.selectors.btnGoBasket);
+    btnGoBasket.style.display = CONFIG.block;
+  }
+
+  initBtnGoOutBasket() {
+    const basketPage = document.querySelector(CONFIG.selectors.basketPage);
+    this.block = basketPage.style.display = CONFIG.block;
+    basketPage.addEventListener('click', (event) => {
+      event.preventDefault();
+      if (this.block) {
+        const clicked = event.target;
+        if (clicked.classList.contains(CONFIG.selectors.btnGoOutBasket)) {
+          history.pushState(null, null, '/');
+          this.router.render(decodeURI(location.pathname));
+          this.showBtnGoBasket();
+        }
+      }
+    });
+  }
 
   renderAllElements(data) {
     this.getAllCars(data);
@@ -246,8 +330,9 @@ export class PageRender {
     this.initAboutPage();
     this.initSearchPage();
     this.initFormPage();
-    this.initBtnFormReturn()
-
+    this.initBtnFormReturn();
+    this.initBtnBasket();
+    this.initBtnGoOutBasket();
   }
 
 }

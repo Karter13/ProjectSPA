@@ -7,7 +7,8 @@ import { CONFIG } from './config';
 import { RouterHistory } from './router';
 import { PageRender } from './page-render';
 import { FormService } from './form-submission';
-// import png from '../images/fon.png';
+import { IdGoodsInBasket } from './basket-data';
+
 
 class App {
   constructor() {
@@ -16,6 +17,7 @@ class App {
     this.router = new RouterHistory();
     this.pageRender = new PageRender(this.router);
     this.init();
+    this.basketData = new IdGoodsInBasket(this.router);
   }
 
   init() {
@@ -40,6 +42,8 @@ class App {
     this.router.addRouter('about', this.pageRender.renderAboutPage.bind(this.pageRender));
     this.router.addRouter('search', this.pageRender.renderSearchPage.bind(this.pageRender, this.cars));
     this.router.addRouter('form', this.pageRender.renderFormPage);
+    this.router.addRouter('basket', this.pageRender.renderBasketPage.bind(this.pageRender, this.cars));
+    this.router.addRouter('empty', this.pageRender.renderBasketPageEmpty);
   }
 
 }
