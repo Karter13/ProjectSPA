@@ -94,15 +94,12 @@ export class FormService {
     const showMessage = document.querySelector(CONFIG.selectors.sendingMessage);
     showMessage.style.display = CONFIG.block;
     this.removeElement(showMessage);
-    // setTimeout(() => {
-    //   showMessage.style.display = CONFIG.none;
-    // }, 5000);
   }
 
   removeElement(element) {
     setTimeout(() => {
       element.style.display = CONFIG.none;
-    }, 3000);
+    }, 5000);
   }
 
 }
