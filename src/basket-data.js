@@ -1,7 +1,6 @@
 import { CONFIG } from "./config";
 import { FormService } from './form-submission';
 
-
 export class IdGoodsInBasket {
   constructor(router) {
     this.router = router;
@@ -11,7 +10,6 @@ export class IdGoodsInBasket {
     this.init();
     this.idGoods = this.initIdGoods();
   }
-
 
   init() {
     this.btnSinglePage.addEventListener('click', (event) => {
@@ -35,6 +33,7 @@ export class IdGoodsInBasket {
 
   getNewIdGoods(id) {
     const googInBasket = document.querySelector(CONFIG.selectors.goodInBasket);
+    const goodAlreadyInBasket = document.querySelector(CONFIG.selectors.goodAlreadyInBasket)
     const filterId = this.idGoods.filter((elem) => elem.id === id);
 
     if (filterId.length === 0 && id.length > 0 && id !== '') {
@@ -42,6 +41,9 @@ export class IdGoodsInBasket {
       this.seveId(this.idGoods);
       googInBasket.style.display = CONFIG.block;
       this.formSubmission.removeElement(googInBasket);
+    } else {
+      goodAlreadyInBasket.style.display = CONFIG.block;
+      this.formSubmission.removeElement(goodAlreadyInBasket);
     }
 
   }

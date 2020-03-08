@@ -51,6 +51,8 @@ export const CONFIG = {
     navbarCars: '.navbar-cars',
     basketPageEmpty: '.errorbasket',
     goodInBasket: '.good-basket',
+    goodAlreadyInBasket: '.good-inbasket',
+
   },
   none: 'none',
   block: 'block',

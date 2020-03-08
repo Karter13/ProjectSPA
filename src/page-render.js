@@ -236,7 +236,7 @@ export class PageRender {
                                 </textarea>
                     </div>
                     <button type="submit" class="btn btn-outline-dark form-btn">Отправить</button>
-                    <div class="valid-good shadow p-2">Данные улетели!
+                    <div class="valid-good shadow p-2">Данные улетели! Консультант свяжеться с вами в течении 20 минут!!!
                   </div>`;
     div.innerHTML = template;
     formPageContent.append(div);
@@ -284,7 +284,6 @@ export class PageRender {
       }
     } else {
       this.renderBasketEmpty();
-      console.log('error');
     }
     this.IdGoodsInBasket.initBtnDeleteGood();
   }
